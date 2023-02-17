@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model List<Employee>
+@{
+    ViewData["Title"] = "Index";
+    bool admin = Convert.ToBoolean(Context.Session.GetString("EmployeeRole")=="Admin");
+}
+
+<div class="position-relative">
+
+    @{
+        if (admin)
+        {
+            <h4 class="text-uppercase text-center">Registered Employees</h4>
+        }
+        else
+        {
+            <h4 class="text-uppercase text-center">My Information</h4>
+        }
+      }
+    <div class="position-relative rounded-3 container mt-5 shadow" style="height:450px; overflow-y:scroll;">
+
+        <table class="table table-striped">
+            <thead class="bg-dark position-sticky top-0 text-white">
+
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Function</th>
+                    <th>Location</th>
+                    <th>Username</th>
+                    <th>
+
+                    </th>
+                    @{
+                        if (!admin)
+                        {
+                            <th></th>
+                        }
+                        else
+                        {
+                            <th>
+                                <a class="btn shadow p-1 px-3 btn-success btn-light border-0" asp-controller="Employee" asp-action="Create">+ Add Employee</a>
+                            </th> 
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int count = 0;
+
+                    foreach (Employee e in Model)
+                    {
+                        count += 1;
+                        <tr>
+                            <td>
+                                @count
+                            </td>
+                            <td>
+                                @e.EmployeeName
+                            </td>
+                            <td>
+                                @e.EmployeeDOB
+                            </td>
+                            <td>
+                                @e.EmployeeFunction
+                            </td>
+                            <td>
+                                @e.EmployeeLocation
+                            </td>
+                            <td>
+                                @e.Username
+                            </td>
+                            <td>
+                                <a asp-controller="Employee" asp-action="Edit" asp-route-id="@e.EmployeeId" class="btn btn-secondary px-4 rounded-3 border-0 p-2 text-white">Edit</a>
+                            </td>
+                            <td>
+                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@e.EmployeeId" class="btn btn-danger px-4 border-0 text-white rounded-3 p-2">Remove</a>
+                            </td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>

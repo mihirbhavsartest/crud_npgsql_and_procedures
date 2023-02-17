@@ -1,0 +1,157 @@
+﻿// Getting employees list
+Create or replace function GetAllEmployees()
+ returns table
+ (
+ 	EmployeeId int,
+ 	EmployeeName text,
+ 	EmployeeDOB text,
+ 	EmployeeFunction text,
+ 	EmployeeLocation text,
+ 	EmployeeRole text,
+    Username text,
+    Password text
+ )
+ as
+ $$
+ begin 
+ 	return query
+ 	select * from employees;
+ end
+ $$
+ language plpgsql;
+
+
+
+
+
+
+ // Creating employee
+ create or replace procedure AddEmployee(
+ 	EName text,
+ 	EDOB text,
+ 	EFunction text,
+ 	ELocation text,
+ 	ERole text,
+    EUsername text,
+    EPassword text
+ )
+ as
+ $$
+ begin
+ 	insert into employees ("EmployeeName","EmployeeDOB","EmployeeFunction","EmployeeLocation","EmployeeRole","Username","Password") values(
+ 		EName,
+ 		EDOB,
+ 		EFunction,
+ 		ELocation,
+ 		ERole,
+        EUsername,
+        EPassword
+ 	);		
+ end
+ $$
+ language plpgsql;
+
+
+
+
+
+
+
+
+
+ // Updating employee
+ create or replace procedure UpdateEmployee(
+ 	EId int,
+    EName text,
+ 	EDOB text,
+ 	EFunction text,
+ 	ELocation text,
+ 	ERole text,
+    EUsername text,
+    EPassword text
+ )
+ as
+ $$
+ begin
+ 	update employees 
+ 	set "EmployeeName"=EName,"EmployeeDOB"=EDOB,"EmployeeFunction"=EFunction,"EmployeeLocation"=ELocation,"EmployeeRole"=ERole,"Username"=EUsername,"Password"=EPassword
+ 	where "EmployeeId"=EId;
+ end
+ $$
+ language plpgsql;
+
+
+
+
+
+
+
+
+ // Deleting Employee
+ create or replace procedure DeleteEmployee(
+ EmpId int
+)
+as
+$$
+begin
+	delete from employees where "EmployeeId"=EmpId;
+end
+$$
+language plpgsql;
+	
+
+
+
+
+
+
+// Getting an employee
+create or replace function GetEmployee(Id int) returns table
+(
+EmployeeId int, 
+EmployeeName text,
+EmployeeName text,
+EmployeeDOB text,
+EmployeeFunction text,
+EmployeeLocation text,
+EmployeeRole text
+)
+as
+$$
+begin
+    return query
+    select * from employees where "EmployeeId"=Id;
+end
+$$
+language plpgsql;
+
+
+
+
+
+
+
+
+// getting an employee
+create or replace function GetEmployee(
+	Id int
+) 
+returns table
+(
+EmployeeId int, 
+EmployeeName text,
+EmployeeDOB text,
+EmployeeFunction text,
+EmployeeLocation text,
+EmployeeRole text,
+Username text,
+Password text
+)
+as
+$$
+begin
+    return query
+    select * from employees where "EmployeeId"=Id;
+end
+$$
+language plpgsql;

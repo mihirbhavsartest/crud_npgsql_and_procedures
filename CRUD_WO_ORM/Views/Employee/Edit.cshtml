@@ -1,0 +1,77 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Edit";
+}
+<h4 class="text-uppercase text-center">Edit Employee</h4>
+<div class="d-flex w-50 flex-column m-auto p-4 shadow mt-4 rounded-3 bg-dark text-white">
+    <form class="flex-column justify-content-center d-flex gap-4 py-2" method="post">
+        <input hidden class="form-control" asp-for="EmployeeId" value="@Model.EmployeeId" />
+
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="EmployeeName">Employee Name</label>
+            <div class="w-75">
+                <input class="form-control" asp-for="EmployeeName" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="EmployeeDOB">Date of Birth</label>
+            <div class="w-75">
+
+                <input type="date" class="form-control" asp-for="EmployeeDOB" />
+                <span asp-validation-for="EmployeeDOB" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="EmployeeFunction">Function</label>
+            <div class="w-75">
+
+                <input class="form-control" asp-for="EmployeeFunction" />
+                <span asp-validation-for="EmployeeFunction" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="EmployeeLocation">Location</label>
+            <div class="w-75">
+
+                <input class="form-control" asp-for="EmployeeLocation" />
+                <span asp-validation-for="EmployeeLocation" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="EmployeeRole">Role</label>
+            <div class="w-75">
+
+                <input class="form-control" asp-for="EmployeeRole" />
+                <span asp-validation-for="EmployeeRole" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="Username">Username</label>
+            <div class="w-75">
+
+                <input class="form-control" asp-for="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap">
+            <label class="w-25 text-nowrap" asp-for="Password">Password</label>
+            <div class="w-75">
+                <input class="form-control" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex w-100 gap-3">
+
+            <input type="submit" class="btn btn-success w-25" />
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary w-25">Back</a>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
